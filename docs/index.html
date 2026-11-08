@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Star Rating Widget | Interactive Feedback Hub</title>
+  <meta name="description" content="A modern, interactive 5-star rating widget with live score distributions and review submissions built with Node.js and Express." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="background-decorations">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+  </div>
+
+  <main class="container">
+    <div class="card widget-card">
+      <header class="card-header">
+        <span class="badge">🌟 FEEDBACK & REVIEWS</span>
+        <h1>Rate Your Experience</h1>
+        <p class="subtitle">How was your experience working with this project?</p>
+      </header>
+
+      <!-- Interactive Stars -->
+      <section class="rating-input-section">
+        <div class="stars" role="radiogroup" aria-label="Select a rating from 1 to 5 stars">
+          <button class="star" data-rating="1" aria-label="1 star - Poor" aria-checked="false">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          </button>
+          <button class="star" data-rating="2" aria-label="2 stars - Fair" aria-checked="false">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          </button>
+          <button class="star" data-rating="3" aria-label="3 stars - Good" aria-checked="false">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          </button>
+          <button class="star" data-rating="4" aria-label="4 stars - Very Good" aria-checked="false">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          </button>
+          <button class="star" data-rating="5" aria-label="5 stars - Excellent" aria-checked="false">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          </button>
+        </div>
+
+        <p id="ratingFeedback" class="rating-feedback">Tap a star to rate</p>
+      </section>
+
+      <!-- Optional Feedback Form -->
+      <form id="ratingForm" class="feedback-form">
+        <div class="input-group">
+          <input type="text" id="reviewerName" placeholder="Your name (optional)" maxlength="50" autocomplete="off" />
+        </div>
+        <div class="input-group">
+          <textarea id="reviewerComment" placeholder="Write a short review or thoughts (optional)..." rows="3" maxlength="300"></textarea>
+        </div>
+
+        <button type="submit" id="submitBtn" class="btn submit-btn" disabled>
+          <span class="btn-text">Submit Rating</span>
+        </button>
+      </form>
+
+      <div id="statusMessage" class="status-message" aria-live="polite"></div>
+
+      <!-- Rating Breakdown & Analytics -->
+      <section class="rating-analytics">
+        <div class="score-overview">
+          <div class="score-number-wrap">
+            <span id="avgRating" class="score-number">0.0</span>
+            <div class="stars-mini" aria-hidden="true">★★★★★</div>
+            <span id="totalRatings" class="score-total">Based on 0 ratings</span>
+          </div>
+
+          <div class="histogram-bars">
+            <div class="bar-row">
+              <span class="bar-label">5 ★</span>
+              <div class="bar-track">
+                <div id="bar5" class="bar-fill" style="width: 0%"></div>
+              </div>
+              <span id="count5" class="bar-count">0</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">4 ★</span>
+              <div class="bar-track">
+                <div id="bar4" class="bar-fill" style="width: 0%"></div>
+              </div>
+              <span id="count4" class="bar-count">0</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">3 ★</span>
+              <div class="bar-track">
+                <div id="bar3" class="bar-fill" style="width: 0%"></div>
+              </div>
+              <span id="count3" class="bar-count">0</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">2 ★</span>
+              <div class="bar-track">
+                <div id="bar2" class="bar-fill" style="width: 0%"></div>
+              </div>
+              <span id="count2" class="bar-count">0</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">1 ★</span>
+              <div class="bar-track">
+                <div id="bar1" class="bar-fill" style="width: 0%"></div>
+              </div>
+              <span id="count1" class="bar-count">0</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Community Reviews List -->
+      <section class="reviews-section">
+        <div class="reviews-header">
+          <h3>Community Feedback</h3>
+          <span id="activeMode" class="mode-pill">⚡ API Live</span>
+        </div>
+        <div id="reviewsList" class="reviews-list">
+          <div class="loading-shimmer">Loading feedback...</div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

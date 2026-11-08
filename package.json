@@ -1,12 +1,24 @@
 {
-  "name": "star-rating-widget",
-  "version": "1.0.0",
-  "description": "A simple star rating widget built with Node.js and Express",
+  "name": "star-rating-widget-nodejs",
+  "version": "1.2.0",
+  "description": "An interactive, accessible 5-star rating widget with real-time score distribution and reviews built with Node.js and Express.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "node server.js"
+    "dev": "node --watch server.js"
   },
+  "keywords": [
+    "star-rating",
+    "widget",
+    "nodejs",
+    "express",
+    "feedback",
+    "reviews",
+    "accessible",
+    "interactive"
+  ],
+  "author": "Gugulothu Yashwanth",
+  "license": "MIT",
   "dependencies": {
     "express": "^4.21.2"
   }
