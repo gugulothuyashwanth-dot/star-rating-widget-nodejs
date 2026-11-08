@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Star Rating Widget</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="card">
+    <div class="eyebrow">FEEDBACK</div>
+    <h1>Rate your experience</h1>
+    <p class="subtitle">How would you rate this project?</p>
+
+    <div class="stars" role="radiogroup" aria-label="Choose a rating">
+      <button class="star" data-rating="1" aria-label="1 star" aria-checked="false">★</button>
+      <button class="star" data-rating="2" aria-label="2 stars" aria-checked="false">★</button>
+      <button class="star" data-rating="3" aria-label="3 stars" aria-checked="false">★</button>
+      <button class="star" data-rating="4" aria-label="4 stars" aria-checked="false">★</button>
+      <button class="star" data-rating="5" aria-label="5 stars" aria-checked="false">★</button>
+    </div>
+
+    <p id="ratingText" class="rating-text">Select a star to rate</p>
+    <button id="submitBtn" class="submit-btn" disabled>Submit rating</button>
+    <p id="message" class="message" aria-live="polite"></p>
+
+    <div class="summary">
+      <div>
+        <strong id="average">0.0</strong>
+        <span>Average rating</span>
+      </div>
+      <div>
+        <strong id="total">0</strong>
+        <span>Total ratings</span>
+      </div>
+    </div>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

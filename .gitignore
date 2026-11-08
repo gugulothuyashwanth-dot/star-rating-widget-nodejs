@@ -1,0 +1,4 @@
+node_modules/
+ratings.json
+npm-debug.log*
+.DS_Store
